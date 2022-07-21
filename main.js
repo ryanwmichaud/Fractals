@@ -67,33 +67,34 @@
 
        
 
-        function rec(t, size, depth, scale){
+        function rec(t, size, depth, scale, str){
+            //console.log('depth',depth);
             function recForward(){
-                rec(t,size/scale,depth-1,scale)
+                rec(t,size/scale,depth-1,scale,str)
             }
-            console.log(size);
+            
             if(depth===0){
                 t.forward(size)
             }
             else{
-                recForward()
-                t.turnLeft()
-                recForward()
-                t.turnRight()
-                recForward()
-                recForward()
-                t.turnRight()
-                recForward()
-                t.turnLeft()
-                recForward()
-              
+                
+                for(const i of str ){
+                    if (i === 'f'){
+                        recForward()
+                    }else if(i === '+'){
+                        t.turnRight()
+                    }else if(i === '-'){
+                        t.turnLeft() 
+                    }
+                }
             }
         }
         
         t = new Turtle(150,150)
-        const s = 200
-        const d = 2
-        rec(t,s,d,4)
+        const size = 200
+        const depth = 4
+        const scale = 4
+        rec(t,size,depth,scale,'f+f-f-f+ff')
         /*
         t.turnRight()
         rec(t,s,d,4)
