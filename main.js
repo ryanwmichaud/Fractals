@@ -23,13 +23,19 @@
 
         class Turtle{
             constructor(x, y){
+                this.startx=x
+                this.starty=y
                 this.x=x
                 this.y=y
                 this.direction = 0
-                ctx.beginPath()
                 ctx.moveTo(x,y)
             }
-
+            reset(){
+                this.x=this.startx
+                this.y=this.starty
+                this.direction = 0
+                ctx.moveTo(this.x,this.y)
+            }
             forward(dist){
                 //console.log('before: ',this.x,this.y)
                 if(this.direction===0){
@@ -60,7 +66,7 @@
                 if(this.direction<0){
                     this.direction=3
                 }
-                console.log(this.direction);
+                
             }
         }
 
@@ -74,6 +80,7 @@
             }
             
             if(depth===0){
+                console.log(size);
                 t.forward(size)
             }
             else{
@@ -89,12 +96,42 @@
                 }
             }
         }
+
         
+        
+        const scaleInput = document.getElementById('scaleInput')
+        const depthInput = document.getElementById('depthInput')
+
         t = new Turtle(150,150)
         const size = 200
-        const depth = 4
-        const scale = 4
-        rec(t,size,depth,scale,'f+f-f-f+ff')
+        var depth = parseInt(depthInput.value)
+        var scale = parseInt(scaleInput.value)
+        //str = 'f+f-f-f+ff'
+        str = 'f+f-f-f+f'
+        
+        ctx.beginPath()
+        rec(t,size,depth,scale,str)
+
+
+        scaleInput.addEventListener('change',()=>{
+            scale = parseInt(scaleInput.value)
+            console.log('scale: ',scale)
+            t.reset()
+            ctx.clearRect(0,0,canvas.height,canvas.width)
+            ctx.beginPath()
+            ctx.moveTo(150,150)
+            rec(t,size,depth,scale,str)
+        })
+        depthInput.addEventListener('change',()=>{
+            depth = parseInt(depthInput.value)
+            console.log('depth: ',depth)
+            t.reset()
+            ctx.clearRect(0,0,canvas.height,canvas.width)
+            ctx.beginPath()
+            ctx.moveTo(150,150)
+            rec(t,size,depth,scale,str)
+        })
+       
         /*
         t.turnRight()
         rec(t,s,d,4)
@@ -103,12 +140,7 @@
         t.turnRight()
         rec(t,s,d,4)
         */
-        
-     
-        
-        
-        
-
+      
         
     }
 
