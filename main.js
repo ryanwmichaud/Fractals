@@ -1,6 +1,6 @@
 
     let canvas, ctx
-
+//add a target dot for start and finish
     function main(){
         canvas = document.getElementById('canvas')
         if(canvas.getContext) {
@@ -93,7 +93,7 @@
         }
         const scaleInput = document.getElementById('scaleInput')
         const depthInput = document.getElementById('depthInput')
-
+        const currDir = document.getElementById('direction')
         scaleInput.addEventListener('change',()=>{
             scale = parseInt(scaleInput.value)
             console.log('scaleinevent depth:',depth,'\nscale:',scale,'str:',str)
@@ -123,16 +123,16 @@
                     
                     switch(state){
                         case 'u': 
-                            str=str+'f'
+
                             break
                         case 'r': 
-                            str=str+'-f'
+                            str=str+'-'
                             break
                         case 'l': 
-                            str=str+'+f'
+                            str=str+'+'
                             break
                         case 'd': 
-                            str=str+'++f'
+                            str=str+'++'
                             break
                     } 
                     state='u'
@@ -140,16 +140,16 @@
                 case 'ArrowRight': 
                     switch(state){
                         case 'u': 
-                            str=str+'+f'
+                            str=str+'+'
                             break
                         case 'r': 
-                            str=str+'f'
+        
                             break
                         case 'l': 
-                            str=str+'++f'
+                            str=str+'++'
                             break
                         case 'd': 
-                            str=str+'-f'
+                            str=str+'-'
                             break
                     } 
                     state='r'
@@ -157,43 +157,47 @@
                 case 'ArrowDown': 
                     switch(state){
                         case 'u': 
-                            str=str+'++f'
+                            str=str+'++'
                             break
                         case 'r': 
-                            str=str+'+f'
+                            str=str+'+'
                             break
                         case 'l': 
-                            str=str+'-f'
+                            str=str+'-'
                             break
                         case 'd': 
-                            str=str+'f'
+                            
                             break
                     } 
                     state='d'
                     break
                 case 'ArrowLeft': 
-                switch(state){
-                    case 'u': 
-                        str=str+'-f'
-                        break
-                    case 'r': 
-                        str=str+'++f'
-                        break
-                    case 'l': 
-                        str=str+'f'
-                        break
-                    case 'd': 
-                        str=str+'+f'
-                        break
+                    switch(state){
+                        case 'u': 
+                            str=str+'-'
+                            break
+                        case 'r': 
+                            str=str+'++'
+                            break
+                        case 'l': 
+                            
+                            break
+                        case 'd': 
+                            str=str+'+'
+                            break
                 } 
                     state='l'
                     break
+                case 'f':
+                    str=str+'f'
+                    break
+
             } 
             
             
             
             console.log('keyend and depth:',depth,'\nscale:',scale,'str:',str)
-
+            currDir.textContent='current direction:'+state
             rec(t,size,depth,scale,str)
             
         })
@@ -206,7 +210,8 @@
         //str = 'f+f-f-f+ff'
         var state = 'r'
         str = ''
-        
+        currDir.textContent=`current direction: ${state}`
+
         ctx.beginPath()
         rec(t,size,depth,scale,str)
 
