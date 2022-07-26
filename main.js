@@ -1,10 +1,7 @@
 
-
-
-(function (){
     let canvas, ctx
 
-    function init(){
+    function main(){
         canvas = document.getElementById('canvas')
         if(canvas.getContext) {
             ctx = canvas.getContext('2d')
@@ -37,7 +34,7 @@
                 ctx.moveTo(this.x,this.y)
             }
             forward(dist){
-                //console.log('before: ',this.x,this.y)
+              
                 if(this.direction===0){
                     this.x+=dist;
                     
@@ -56,7 +53,6 @@
                 }
                 ctx.lineTo(this.x,this.y)
                 ctx.stroke()
-                //console.log('now ',this.x,this.y);
             }
             turnRight(){
                 this.direction = (this.direction + 1)%4;   
@@ -74,13 +70,12 @@
        
 
         function rec(t, size, depth, scale, str){
-            //console.log('depth',depth);
+            
             function recForward(){
                 rec(t,size/scale,depth-1,scale,str)
             }
             
             if(depth===0){
-                console.log(size);
                 t.forward(size)
             }
             else{
@@ -96,26 +91,12 @@
                 }
             }
         }
-
-        
-        
         const scaleInput = document.getElementById('scaleInput')
         const depthInput = document.getElementById('depthInput')
 
-        t = new Turtle(150,150)
-        const size = 200
-        var depth = parseInt(depthInput.value)
-        var scale = parseInt(scaleInput.value)
-        //str = 'f+f-f-f+ff'
-        str = 'f+f-f-f+f'
-        
-        ctx.beginPath()
-        rec(t,size,depth,scale,str)
-
-
         scaleInput.addEventListener('change',()=>{
             scale = parseInt(scaleInput.value)
-            console.log('scale: ',scale)
+            console.log('scaleinevent depth:',depth,'\nscale:',scale,'str:',str)
             t.reset()
             ctx.clearRect(0,0,canvas.height,canvas.width)
             ctx.beginPath()
@@ -124,14 +105,112 @@
         })
         depthInput.addEventListener('change',()=>{
             depth = parseInt(depthInput.value)
-            console.log('depth: ',depth)
+            console.log('depthinevent depth:',depth,'\nscale:',scale,'str:',str)
             t.reset()
             ctx.clearRect(0,0,canvas.height,canvas.width)
             ctx.beginPath()
             ctx.moveTo(150,150)
             rec(t,size,depth,scale,str)
         })
+        document.addEventListener('keydown',(e)=>{
+            console.log('keypress begin and depth:',depth);
        
+            t.reset()
+            ctx.beginPath()
+            
+            switch(e.key){
+                case 'ArrowUp': 
+                    
+                    switch(state){
+                        case 'u': 
+                            str=str+'f'
+                            break
+                        case 'r': 
+                            str=str+'-f'
+                            break
+                        case 'l': 
+                            str=str+'+f'
+                            break
+                        case 'd': 
+                            str=str+'++f'
+                            break
+                    } 
+                    state='u'
+                    break
+                case 'ArrowRight': 
+                    switch(state){
+                        case 'u': 
+                            str=str+'+f'
+                            break
+                        case 'r': 
+                            str=str+'f'
+                            break
+                        case 'l': 
+                            str=str+'++f'
+                            break
+                        case 'd': 
+                            str=str+'-f'
+                            break
+                    } 
+                    state='r'
+                    break
+                case 'ArrowDown': 
+                    switch(state){
+                        case 'u': 
+                            str=str+'++f'
+                            break
+                        case 'r': 
+                            str=str+'+f'
+                            break
+                        case 'l': 
+                            str=str+'-f'
+                            break
+                        case 'd': 
+                            str=str+'f'
+                            break
+                    } 
+                    state='d'
+                    break
+                case 'ArrowLeft': 
+                switch(state){
+                    case 'u': 
+                        str=str+'-f'
+                        break
+                    case 'r': 
+                        str=str+'++f'
+                        break
+                    case 'l': 
+                        str=str+'f'
+                        break
+                    case 'd': 
+                        str=str+'+f'
+                        break
+                } 
+                    state='l'
+                    break
+            } 
+            
+            
+            
+            console.log('keyend and depth:',depth,'\nscale:',scale,'str:',str)
+
+            rec(t,size,depth,scale,str)
+            
+        })
+        
+        
+        t = new Turtle(150,150)
+        const size = 200
+        var depth = parseInt(depthInput.value)
+        var scale = parseInt(scaleInput.value)
+        //str = 'f+f-f-f+ff'
+        var state = 'r'
+        str = ''
+        
+        ctx.beginPath()
+        rec(t,size,depth,scale,str)
+
+
         /*
         t.turnRight()
         rec(t,s,d,4)
@@ -140,14 +219,12 @@
         t.turnRight()
         rec(t,s,d,4)
         */
-      
-        
     }
 
-    document.addEventListener('DOMContentLoaded',init)
+    document.addEventListener('DOMContentLoaded',main)
     //once DOM loads, init canvas and context
 
-})()
+
 
 
 /*
