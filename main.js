@@ -1,5 +1,6 @@
+import {Turtle} from './turtle.js'
 
-    let canvas, ctx
+let canvas, ctx
 //add a target dot for start and finish
     function main(){
         canvas = document.getElementById('canvas')
@@ -10,110 +11,9 @@
             return
         }
 
-  
-        const directions = {
-            0 : 'right',
-            1 : 'down',
-            2 : 'left',
-            3 : 'up'
-        }
-
-        class Turtle{
-            constructor(x, y){
-                this.startx=x
-                this.starty=y
-                this.x=x
-                this.y=y
-                this.direction = 0
-                ctx.moveTo(x,y)
-            }
-            reset(){
-                this.x=this.startx
-                this.y=this.starty
-                this.direction = 0
-                ctx.moveTo(this.x,this.y)
-            }
-            forward(dist){
-              
-                if(this.direction===0){
-                    this.x+=dist;
-                    
-                }
-                if(this.direction===1){
-                    this.y+=dist;
-                    
-                }
-                if(this.direction===2){
-                    this.x-=dist;
-                   
-                }
-                if(this.direction===3){
-                    this.y-=dist;
-                    
-                }
-                ctx.lineTo(this.x,this.y)
-                ctx.stroke()
-                //this.drawTurtle()
-            }
-            turnRight(){
-                this.direction = (this.direction + 1)%4; 
-                //this.drawTurtle()  
-            }
-            turnLeft(){
-                this.direction = (this.direction - 1)%4;
-                if(this.direction<0){
-                    this.direction=3
-                }
-                //this.drawTurtle()
-                
-            }
-            drawTurtle(){
-                const out = 5
-                const back = 5
-                const tip = 8
-                switch(this.direction){
-                    case 3:
-                        ctx.moveTo(this.x,this.y-tip)
-                        ctx.lineTo(this.x-out,this.y+back)
-                        ctx.lineTo(this.x+out,this.y+back)
-                        ctx.lineTo(this.x,this.y-tip)
-                        break
-                    case 0:
-                        
-                        ctx.moveTo(this.x+tip,this.y)
-                        ctx.lineTo(this.x-back,this.y+out)
-                        ctx.lineTo(this.x-back,this.y-out)
-                        ctx.lineTo(this.x+tip,this.y)
-                        break
-                    case 1:
-                        console.log('down')
-                        ctx.moveTo(this.x,this.y+tip)
-                        ctx.lineTo(this.x+out,this.y-back)
-                        ctx.lineTo(this.x-out,this.y-back)
-                        ctx.lineTo(this.x,this.y+tip)
-                        break
-                    case 2:
-                        console.log('left')
-                        ctx.moveTo(this.x-tip,this.y)
-                        ctx.lineTo(this.x+back,this.y+out)
-                        ctx.lineTo(this.x+back,this.y-out)
-                        ctx.lineTo(this.x-tip,this.y)
-                        break
-                    
-                        
-
-                }
-                
-                ctx.moveTo(this.x,this.y)
-                ctx.stroke()
-
-                
-            }
-        }
-
-
-       
-
+        const scaleInput = document.getElementById('scaleInput')
+        const depthInput = document.getElementById('depthInput')
+        const currDir = document.getElementById('direction')
         function rec(t, size, depth, scale, str){
             
             function recForward(){
@@ -136,9 +36,6 @@
                 }
             }
         }
-        const scaleInput = document.getElementById('scaleInput')
-        const depthInput = document.getElementById('depthInput')
-        const currDir = document.getElementById('direction')
         scaleInput.addEventListener('change',()=>{
             scale = parseInt(scaleInput.value)
             console.log('scaleinevent depth:',depth,'\nscale:',scale,'str:',str)
@@ -258,13 +155,13 @@
         })
         
         
-        t = new Turtle(150,150)
+        const t = new Turtle(150,150,ctx)
         const size = 200
         var depth = parseInt(depthInput.value)
         var scale = parseInt(scaleInput.value)
         //str = 'f+f-f-f+ff'
         var state = 'r'
-        str = ''
+        var str = ''
         currDir.textContent=`current direction: ${state}`
 
         ctx.beginPath()
