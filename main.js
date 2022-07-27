@@ -53,15 +53,60 @@
                 }
                 ctx.lineTo(this.x,this.y)
                 ctx.stroke()
+                //this.drawTurtle()
             }
             turnRight(){
-                this.direction = (this.direction + 1)%4;   
+                this.direction = (this.direction + 1)%4; 
+                //this.drawTurtle()  
             }
             turnLeft(){
                 this.direction = (this.direction - 1)%4;
                 if(this.direction<0){
                     this.direction=3
                 }
+                //this.drawTurtle()
+                
+            }
+            drawTurtle(){
+                const out = 5
+                const back = 5
+                const tip = 8
+                switch(this.direction){
+                    case 3:
+                        ctx.moveTo(this.x,this.y-tip)
+                        ctx.lineTo(this.x-out,this.y+back)
+                        ctx.lineTo(this.x+out,this.y+back)
+                        ctx.lineTo(this.x,this.y-tip)
+                        break
+                    case 0:
+                        
+                        ctx.moveTo(this.x+tip,this.y)
+                        ctx.lineTo(this.x-back,this.y+out)
+                        ctx.lineTo(this.x-back,this.y-out)
+                        ctx.lineTo(this.x+tip,this.y)
+                        break
+                    case 1:
+                        console.log('down')
+                        ctx.moveTo(this.x,this.y+tip)
+                        ctx.lineTo(this.x+out,this.y-back)
+                        ctx.lineTo(this.x-out,this.y-back)
+                        ctx.lineTo(this.x,this.y+tip)
+                        break
+                    case 2:
+                        console.log('left')
+                        ctx.moveTo(this.x-tip,this.y)
+                        ctx.lineTo(this.x+back,this.y+out)
+                        ctx.lineTo(this.x+back,this.y-out)
+                        ctx.lineTo(this.x-tip,this.y)
+                        break
+                    
+                        
+
+                }
+                
+                ctx.moveTo(this.x,this.y)
+                ctx.stroke()
+
                 
             }
         }
@@ -102,6 +147,7 @@
             ctx.beginPath()
             ctx.moveTo(150,150)
             rec(t,size,depth,scale,str)
+            t.drawTurtle()
         })
         depthInput.addEventListener('change',()=>{
             depth = parseInt(depthInput.value)
@@ -111,15 +157,17 @@
             ctx.beginPath()
             ctx.moveTo(150,150)
             rec(t,size,depth,scale,str)
+            t.drawTurtle()
         })
         document.addEventListener('keydown',(e)=>{
             console.log('keypress begin and depth:',depth);
        
             t.reset()
+            ctx.clearRect(0,0,canvas.height,canvas.width)
             ctx.beginPath()
             
             switch(e.key){
-                case 'ArrowUp': 
+                case 'w': 
                     
                     switch(state){
                         case 'u': 
@@ -137,7 +185,7 @@
                     } 
                     state='u'
                     break
-                case 'ArrowRight': 
+                case 'd': 
                     switch(state){
                         case 'u': 
                             str=str+'+'
@@ -154,7 +202,7 @@
                     } 
                     state='r'
                     break
-                case 'ArrowDown': 
+                case 's': 
                     switch(state){
                         case 'u': 
                             str=str+'++'
@@ -171,7 +219,7 @@
                     } 
                     state='d'
                     break
-                case 'ArrowLeft': 
+                case 'a': 
                     switch(state){
                         case 'u': 
                             str=str+'-'
@@ -185,20 +233,27 @@
                         case 'd': 
                             str=str+'+'
                             break
-                } 
+                    } 
                     state='l'
                     break
                 case 'f':
                     str=str+'f'
                     break
+                case 'q':
+                        str=str+'-'
+                        break
+                case 'e':
+                        str=str+'+'
+                        break
 
             } 
             
             
             
             console.log('keyend and depth:',depth,'\nscale:',scale,'str:',str)
-            currDir.textContent='current direction:'+state
+            currDir.textContent='current direction: '+state
             rec(t,size,depth,scale,str)
+            t.drawTurtle()
             
         })
         
@@ -214,6 +269,7 @@
 
         ctx.beginPath()
         rec(t,size,depth,scale,str)
+        t.drawTurtle()
 
 
         /*
