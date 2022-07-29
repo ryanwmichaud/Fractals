@@ -16,7 +16,7 @@
                 <canvas width="500" height="500" id="canvas">Browser not capable of displaying the canvas</canvas>
             </div>
             <div id="inputCon">
-                <div>
+                <div id="scaleDiv">
                     <label for="scaleInput">scale down by: </label>
                     <select name="scaleInput" id="scaleInput">
                         <option value="1">1</option>
@@ -52,38 +52,47 @@
         
         
         
-        <p id="description">
+        <p>
             A real time fractal visualizer - draw a curve and see how it looks with each 'forward' segment replaced by itself! Or draw in real time at higher recursive depth!
-            <br>
-            <br>    W - Turn Up
-            <br>    A - Turn Left
-            <br>    S - Turn Down
-            <br>    D - Turn Right
-            <br>    P - Move Forward
-            <br>    Q - Turn Counterclockwise
-            <br>    E - Turn clockwise
-            <br>
-            <br> All actions including turns are recorded into the directions but you can use the undo button to undo your last action!
+        </p>
+        <p class="controls">
+                <br>    W - Turn Up
+                <br>    A - Turn Left
+                <br>    S - Turn Down
+                <br>    D - Turn Right
+                <br>    P - Move Forward
+                <br>    Q - Turn Counterclockwise
+                <br>    E - Turn clockwise
+        
+        </p>
+        <p> 
+            <br> All actions including turns are recorded into the directions but you can use the undo button to undo your last action
             <br> Note that turning 180 degrees turns you around clockwise - for more control you can use q and e to turn left and right 
             <br>
             <br> scalce - tells us how you want your curve to scale down. For example with a scale of 3, each line will be 3 times smaller than the previous iteration. A curve that ends 3 units from the starting point will stay the same size!
             <br> depth tells us how many times to replace each forward segment with the entire curve 
             <br> the direction string is a visual representation of the instructions for drawing the sdafasdgfb curve of the fractal. each f will be replaced with the entire formula
             <br> you can optionally edit or completly enter this string by hand - just hit the edit button to submit it!
-            <br> 
-            <br>
-            <br>
-            <br>
+        </p>
 
+        <p class="controls">
+                <br>    f to go forward
+                <br>    + to turn clockwise
+                <br>    - to turn counter clockwise
+        </p>
+            
+        <p>
             <br> way to draw with arrow or turn with arrows?
             <br> make turtle more readable with directions for the numbers like enum
             <br> replace ctx  wconstrext, rpleace +_ w rl?
             <br> undo - its the 180 degree turns! bc its ++!. maybe we need like a flag for 180 turns that tells us when to delete 2...
             <br> undo - same direction in a row - maybe add a placeholder in the states string to delete that doesnt actually cahnge
             <br> undo - undo more than there is 
+            <br> undo - only cahnge state if we didnt delete an f!
             <br> textbox edititng super werid what?
             <br> draw a goal dot start and stop for dif subdivisions/scales to keep it same scale
         </p>
+
         <script src="main.js" type="module"></script>
     </body>
 </html>

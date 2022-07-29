@@ -62,6 +62,7 @@ let canvas, ctx
             reDraw()
         })
         undo.addEventListener('click',()=>{
+            console.log('undo pressed');
             if(states.length === 1){
                 return
             }
