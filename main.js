@@ -26,7 +26,10 @@ let canvas, ctx
             }
             else{
                 for(const i of str ){
-                    if (i === 'f'){
+                    if(i === 'n'){
+                        continue
+                    }
+                    else if (i === 'f'){
                         recForward()
                     }else if(i === '+'){
                         t.turnRight()
@@ -59,6 +62,9 @@ let canvas, ctx
             reDraw()
         })
         undo.addEventListener('click',()=>{
+            if(states.length === 1){
+                return
+            }
             str=str.slice(0,-1)
             strEdit.value=str
             
@@ -66,7 +72,6 @@ let canvas, ctx
             state = states.charAt(states.length-1)
             
             
-            console.log(state+' and  '+states);
             currDir.textContent=`current direction:  ${state} ${states}`
 
             reDraw()
@@ -77,7 +82,7 @@ let canvas, ctx
                     
                     switch(state){
                         case 'u': 
-
+                            str=str+'n'
                             break
                         case 'r': 
                             str=str+'-'
@@ -98,7 +103,7 @@ let canvas, ctx
                             str=str+'+'
                             break
                         case 'r': 
-        
+                            str=str+'n'
                             break
                         case 'l': 
                             str=str+'++'
@@ -122,7 +127,7 @@ let canvas, ctx
                             str=str+'-'
                             break
                         case 'd': 
-                            
+                            str=str+'n'
                             break
                     } 
                     state='d'
@@ -137,7 +142,7 @@ let canvas, ctx
                             str=str+'++'
                             break
                         case 'l': 
-                            
+                            str=str+'n'
                             break
                         case 'd': 
                             str=str+'+'
