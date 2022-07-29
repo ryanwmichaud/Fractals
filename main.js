@@ -71,8 +71,7 @@ let canvas, ctx
             
             states = states.slice(0,-1)
             state = states.charAt(states.length-1)
-            
-            
+
             currDir.textContent=`current direction:  ${state} ${states}`
 
             reDraw()
@@ -154,6 +153,7 @@ let canvas, ctx
                     break
                 case 'p':
                     str=str+'f'
+                    states=states+'n'
                     break
                 case 'q':
                         str=str+'-'
