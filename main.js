@@ -14,17 +14,17 @@ let canvas, ctx
         const scaleInput = document.getElementById('scaleInput')
         const depthInput = document.getElementById('depthInput')
         const currDir = document.getElementById('direction')
+        const strEdit = document.getElementById('strEdit')
+        const strEditSubmit = document.getElementById('strEditSubmit')
+        const undo = document.getElementById('undo')
         function rec(t, size, depth, scale, str){
-            
             function recForward(){
                 rec(t,size/scale,depth-1,scale,str)
             }
-            
             if(depth===0){
                 t.forward(size)
             }
             else{
-                
                 for(const i of str ){
                     if (i === 'f'){
                         recForward()
@@ -36,33 +36,42 @@ let canvas, ctx
                 }
             }
         }
-        scaleInput.addEventListener('change',()=>{
-            scale = parseInt(scaleInput.value)
-            console.log('scaleinevent depth:',depth,'\nscale:',scale,'str:',str)
+        function reDraw(){
             t.reset()
             ctx.clearRect(0,0,canvas.height,canvas.width)
             ctx.beginPath()
-            ctx.moveTo(150,150)
+            ctx.moveTo(t.startx,t.starty)
             rec(t,size,depth,scale,str)
             t.drawTurtle()
+        }
+        scaleInput.addEventListener('change',()=>{
+            scale = parseInt(scaleInput.value)
+            //console.log('scaleinevent depth:',depth,'\nscale:',scale,'str:',str)
+            reDraw()
         })
         depthInput.addEventListener('change',()=>{
             depth = parseInt(depthInput.value)
-            console.log('depthinevent depth:',depth,'\nscale:',scale,'str:',str)
-            t.reset()
-            ctx.clearRect(0,0,canvas.height,canvas.width)
-            ctx.beginPath()
-            ctx.moveTo(150,150)
-            rec(t,size,depth,scale,str)
-            t.drawTurtle()
+            //console.log('depthinevent depth:',depth,'\nscale:',scale,'str:',str)
+            reDraw()
+        })
+        strEditSubmit.addEventListener('click',()=>{
+            str = strEdit.value
+            reDraw()
+        })
+        undo.addEventListener('click',()=>{
+            str=str.slice(0,-1)
+            strEdit.value=str
+            
+            states = states.slice(0,-1)
+            state = states.charAt(states.length-1)
+            
+            
+            console.log(state+' and  '+states);
+            currDir.textContent=`current direction:  ${state} ${states}`
+
+            reDraw()
         })
         document.addEventListener('keydown',(e)=>{
-            console.log('keypress begin and depth:',depth);
-       
-            t.reset()
-            ctx.clearRect(0,0,canvas.height,canvas.width)
-            ctx.beginPath()
-            
             switch(e.key){
                 case 'w': 
                     
@@ -81,6 +90,7 @@ let canvas, ctx
                             break
                     } 
                     state='u'
+                    states=states+state
                     break
                 case 'd': 
                     switch(state){
@@ -98,6 +108,7 @@ let canvas, ctx
                             break
                     } 
                     state='r'
+                    states=states+state
                     break
                 case 's': 
                     switch(state){
@@ -115,6 +126,7 @@ let canvas, ctx
                             break
                     } 
                     state='d'
+                    states=states+state
                     break
                 case 'a': 
                     switch(state){
@@ -132,8 +144,9 @@ let canvas, ctx
                             break
                     } 
                     state='l'
+                    states=states+state
                     break
-                case 'f':
+                case 'p':
                     str=str+'f'
                     break
                 case 'q':
@@ -142,15 +155,12 @@ let canvas, ctx
                 case 'e':
                         str=str+'+'
                         break
-
             } 
-            
-            
-            
-            console.log('keyend and depth:',depth,'\nscale:',scale,'str:',str)
-            currDir.textContent='current direction: '+state
-            rec(t,size,depth,scale,str)
-            t.drawTurtle()
+            currDir.textContent=`current direction:  ${state} ${states}`
+            strEdit.value=str
+    
+            //console.log('keyend and depth:',depth,'\nscale:',scale,'str:',str)
+            reDraw()
             
         })
         
@@ -161,9 +171,9 @@ let canvas, ctx
         var scale = parseInt(scaleInput.value)
         //str = 'f+f-f-f+ff'
         var state = 'r'
+        var states = 'r'
         var str = ''
-        currDir.textContent=`current direction: ${state}`
-
+        currDir.textContent=`current direction: ${state} ${states}`
         ctx.beginPath()
         rec(t,size,depth,scale,str)
         t.drawTurtle()

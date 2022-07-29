@@ -8,31 +8,57 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <canvas width="500" height="500" id="canvas">Browser not capable of displaying the canvas</canvas>
-        <label for="scaleInput">subdivision: </label>
-        <select name="scaleInput" id="scaleInput">
-            <option value="1">1</option>
-           <option value="2">2</option>
-           <option value="3" selected="true">3</option> 
-           <option value="4" >4</option>
-           <option value="5">5</option>
-        </select>
-        <label for="depthInput">depth: </label>
-        <select name="depthInput" id="depthInput">
-            <option value="1" selected="true">1</option>
-            <option value="2" >2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <p id="direction"></p>
+        <header>
+            <p id="title">Fractal Visualizer</p>
+        </header>
+        <div id="mainCon">
+            <div id="canvasCon">
+                <canvas width="500" height="500" id="canvas">Browser not capable of displaying the canvas</canvas>
+            </div>
+            <div id="inputCon">
+                <div>
+                    <label for="scaleInput">subdivision: </label>
+                    <select name="scaleInput" id="scaleInput">
+                        <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected="true">3</option> 
+                    <option value="4" >4</option>
+                    <option value="5">5</option>
+                    </select>
+
+                </div>
+                <div>
+                    <label for="depthInput">depth: </label>
+                    <select name="depthInput" id="depthInput">
+                        <option value="1" selected="true">1</option>
+                        <option value="2" >2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                
+                <p id="direction"></p>
+                <form action="" onsubmit="return false" id="strEditForm">
+                    <label for="strEdit">direction string: </label>
+                    <input type="text" id="strEdit" name="strEdit"></input>
+                    <button id="strEditSubmit">edit</button>
+                </form>
+                <button id="undo">undo</button>
+
+            </div>
+           
+        </div>
+        
+        
+        
         <p>
             
-            wasd to turn and f to go forward <br>
-            all turns are recorded <br>
+            use the wasd keys to turn and p to go forward <br>
+            all turns are recorded but you can use the undo button to undo your last action <br>
             note that turning 180 degrees turns you around clockwise - for more control you can use q and e to turn left and right <br>
             <br>
-            idea: show instruction string in textbox and let the user edit it and submit
+            
             <br> way to draw with arrow or turn with arrows?
             <br> make turtle more readable with directions for the numbers like enum
             <br> replace ctx  wconstrext, rpleace +_ w rl. 

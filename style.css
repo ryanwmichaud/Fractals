@@ -1,13 +1,49 @@
+
 body{
-    margin: 0;
+    margin-left: 10px;
     padding: 0;
-    
+    font-family:'Arial Narrow', Arial, sans-serif;    
 }
 
 #canvas{
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 25%;
-    background-color: #999;
     
+    margin: 10px;
+    width: 400px;
+    height: 400px;
+    border: solid 5px red;
+}
+
+#title{
+    font-size: 40px;
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+#mainCon{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: white;
+    
+}
+#canvasCon{
+    background-color: white;
+}
+#inputCon{
+    display: flex;
+    background-color: white;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+
+}
+#strEditForm{
+    display: flex ;
+}
+#strEdit{
+    margin-left: 10px;
+}
+#undo{
+    width:  50px;
 }
