@@ -19,6 +19,10 @@ body{
     margin-top: 20px;
     margin-bottom: 0px;
 }
+#title span{
+    font-size: 15px;
+    margin-left: 20px;
+}
 #mainCon{
     display: flex;
     flex-direction: row;
@@ -35,7 +39,7 @@ body{
     align-items: left;
     justify-content: center;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 20px;
 
 }
 #strEditForm{
@@ -46,4 +50,7 @@ body{
 }
 #undo{
     width:  50px;
+}
+#description{
+    margin-left: 5px;
 }

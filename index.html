@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <p id="title">Fractal Visualizer</p>
+            <p id="title">Fractal Visualizer <span>By Ryan Michaud</span></p>
         </header>
         <div id="mainCon">
             <div id="canvasCon">
@@ -52,16 +52,33 @@
         
         
         
-        <p>
-            
-            use the wasd keys to turn and p to go forward <br>
-            all turns are recorded but you can use the undo button to undo your last action <br>
-            note that turning 180 degrees turns you around clockwise - for more control you can use q and e to turn left and right <br>
+        <p id="description">
+            A real time fractal visualizer - draw a curve and see how it looks with each 'forward' segment replaced by itself! Or draw in real time at higher recursive depth!
             <br>
-            
+            <br>    W - Turn Up
+            <br>    A - Turn Left
+            <br>    S - Turn Down
+            <br>    D - Turn Right
+            <br>    P - Move Forward
+            <br>
+            <br> all actions including turns are recorded into the directions but you can use the undo button to undo your last action 
+            <br> note that turning 180 degrees turns you around clockwise - for more control you can use q and e to turn left and right 
+            <br>
+            <br> subdivision - subdivision tells us how you want your curve to scale down. For example with a subdivision of 3, each line will be 3 times smaller. A curve that ends 3 units away facing to the right will stay the same size!
+            <br> depth tells us how many times to replace each forward segment with the entire curve 
+            <br> the direction string is a visual representation of the instructions for drawing the sdafasdgfb curve of the fractal. each f will be replaced with the entire formula
+            <br> you can optionally edit or completly enter this string by hand - just hit the edit button to submit it!
+            <br> 
+            <br>
+            <br>
+            <br>
+
             <br> way to draw with arrow or turn with arrows?
             <br> make turtle more readable with directions for the numbers like enum
-            <br> replace ctx  wconstrext, rpleace +_ w rl. 
+            <br> replace ctx  wconstrext, rpleace +_ w rl?
+            <br> undo - its the 180 degree turns! bc its ++!. maybe we need like a flag for 180 turns that tells us when to delete 2...
+            <br> textbox edititng super werid what?
+            <br> draw a goal dot start and stop for dif subdivisions/scales to keep it same scale
         </p>
         <script src="main.js" type="module"></script>
     </body>
