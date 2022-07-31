@@ -67,14 +67,12 @@ export class Turtle{
                 this.ctx.lineTo(this.x+tip,this.y)
                 break
             case 1:
-                console.log('down')
                 this.ctx.moveTo(this.x,this.y+tip)
                 this.ctx.lineTo(this.x+out,this.y-back)
                 this.ctx.lineTo(this.x-out,this.y-back)
                 this.ctx.lineTo(this.x,this.y+tip)
                 break
             case 2:
-                console.log('left')
                 this.ctx.moveTo(this.x-tip,this.y)
                 this.ctx.lineTo(this.x+back,this.y+out)
                 this.ctx.lineTo(this.x+back,this.y-out)

@@ -62,15 +62,22 @@ let canvas, ctx
             reDraw()
         })
         undo.addEventListener('click',()=>{
-            console.log('undo pressed');
+            //console.log('undo pressed');
             if(states.length === 1){
                 return
             }
             str=str.slice(0,-1)
             strEdit.value=str
             
-            states = states.slice(0,-1)
-            state = states.charAt(states.length-1)
+
+            //delete last state. look for prev not n, make it that. 
+            states = states.slice(0,-1) 
+            //console.log('last',states.charAt(states.length-1))
+            var i = states.length-1
+            while(states.charAt(i) === 'n'){
+                i--
+            }
+            state = states.charAt(i)
 
             currDir.textContent=`current direction:  ${state} ${states}`
 
@@ -185,14 +192,7 @@ let canvas, ctx
         t.drawTurtle()
 
 
-        /*
-        t.turnRight()
-        rec(t,s,d,4)
-        t.turnRight()
-        rec(t,s,d,4)
-        t.turnRight()
-        rec(t,s,d,4)
-        */
+ 
     }
 
     document.addEventListener('DOMContentLoaded',main)
@@ -200,20 +200,3 @@ let canvas, ctx
 
 
 
-
-/*
-recForward()
-t.turnLeft()
-recForward()
-t.turnRight()
-recForward()
-t.turnRight()
-recForward()
-recForward()
-t.turnLeft()
-recForward()
-t.turnLeft()
-recForward()
-t.turnRight()
-recForward()
-*/
