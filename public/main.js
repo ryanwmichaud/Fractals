@@ -185,12 +185,21 @@ let canvas, ctx
 
         postBtn.addEventListener('click',async ()=>{
             
+            if(titleBox.value === '' ||authorBox.value===''||strEdit.value==='' ){
+                alert('Draw something and fill out all the fields to make a post')
+                return
+            }
 
+            const d = new Date()
+            const dateStr = d.toLocaleString()
+            
             const data = {
                 title: titleBox.value,
                 author: authorBox.value,
-                instructions: strEdit.value
+                instructions: strEdit.value,
+                date: dateStr
             }
+            console.log(data)
 
             const options = {
                 method: 'POST',

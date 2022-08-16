@@ -27,7 +27,12 @@ app.use(express.static('public'))
 app.post('/entries',(req,res)=>{
     console.log('server got a post')
     console.log(req.body)
-    const e = new Entry({title: req.body.title, author: req.body.author, instructions: req.body.instructions})
+    const e = new Entry({
+        title: req.body.title, 
+        author: req.body.author, 
+        instructions: req.body.instructions, 
+        date: req.body.date
+    })
     e.save().then(()=>{console.log('saved')})
     res.json({
         status: 'good'
