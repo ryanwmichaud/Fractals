@@ -1,7 +1,7 @@
 # Fractals
 
 A real time fractal visualizer - draw a curve and see how it looks with each 'forward' segment replaced by itself! Or draw in real time at higher recursive depth!
-
+Post your creations to the gallery and see what other users have come up with
 
 W - Turn Up
 A - Turn Left
