@@ -188,7 +188,8 @@ let canvas, ctx
 
             const data = {
                 title: titleBox.value,
-                author: authorBox.value
+                author: authorBox.value,
+                instructions: strEdit.value
             }
 
             const options = {
