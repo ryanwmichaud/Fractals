@@ -17,8 +17,7 @@ function displayData(data){
 
         root.append(title,author,date,instructions)
         root.classList.add('entry')
-        document.body.append(root)
-        
+        document.getElementById('feed').prepend(root)
     })
     
     

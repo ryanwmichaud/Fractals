@@ -7,7 +7,9 @@ body{
 }
 
 
-
+header p {
+    margin-left: 30px;
+}
 
 
 #canvas{
@@ -18,13 +20,13 @@ body{
     border: solid 5px black;
 }
 
-#heading{
+.headingText{
     font-size: 40px;
     margin-left: 40px;
     margin-top: 20px;
     margin-bottom: 0px;
 }
-#heading span{
+.headingText span{
     font-size: 15px;
     margin-left: 20px;
 }
@@ -33,10 +35,12 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-self: center;
     
 }
 
 #inputCon{
+    width: 30%;
     padding: 1em;
     display: flex;
     background-color: lightgrey;
@@ -64,6 +68,30 @@ body{
 #undo{
     width:  50px;
 }
+
+
+
+
+#postForm{
+    margin: 10px 30px 5px 30px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+#titleDiv, #authorDiv{
+    margin-bottom: 5px;
+    align-self: center;
+}
+#titleDiv label{
+    margin-right: 14px;
+}
+#postBtnDiv{
+    align-self: center;
+}
+
+
+
+
 #description{
    margin-left: 10px;
 }
@@ -74,5 +102,8 @@ p{
     margin-left: 30px;
 }
 .entry{
-    background-color: aquamarine;
+    margin: 30px;
+    background-color: lightgrey;
+    border: solid 5px black;
+
 }
