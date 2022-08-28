@@ -87,7 +87,13 @@ let canvas, ctx
 
             reDraw()
         })
+
+       
+
         document.addEventListener('keydown',(e)=>{
+            if(document.activeElement.classList.contains('textInput')) {
+                return;
+            }
             switch(e.key){
                 case 'w': 
                     
@@ -102,9 +108,12 @@ let canvas, ctx
                             str=str+'+'
                             break
                         case 'd': 
-                            str=str+'++'
+                            //str=str+'++'
                             break
                     } 
+                    if(state==='d'){
+                        break
+                    }
                     state='u'
                     states=states+state
                     break
@@ -117,19 +126,22 @@ let canvas, ctx
                             str=str+'n'
                             break
                         case 'l': 
-                            str=str+'++'
+                            //str=str+'++'
                             break
                         case 'd': 
                             str=str+'-'
                             break
                     } 
+                    if(state==='l'){
+                        break
+                    }
                     state='r'
                     states=states+state
                     break
                 case 's': 
                     switch(state){
                         case 'u': 
-                            str=str+'++'
+                            //str=str+'++'
                             break
                         case 'r': 
                             str=str+'+'
@@ -141,6 +153,9 @@ let canvas, ctx
                             str=str+'n'
                             break
                     } 
+                    if(state==='u'){
+                        break
+                    }
                     state='d'
                     states=states+state
                     break
@@ -150,7 +165,7 @@ let canvas, ctx
                             str=str+'-'
                             break
                         case 'r': 
-                            str=str+'++'
+                            //str=str+'++'
                             break
                         case 'l': 
                             str=str+'n'
@@ -159,6 +174,9 @@ let canvas, ctx
                             str=str+'+'
                             break
                     } 
+                    if(state==='r'){
+                        break
+                    }
                     state='l'
                     states=states+state
                     break

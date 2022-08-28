@@ -42,7 +42,7 @@
                 <p id="direction"></p>
                 <form action="" onsubmit="return false" id="strEditForm">
                     <label for="strEdit">direction string: </label>
-                    <input type="text" id="strEdit" name="strEdit"></input>
+                    <input type="text" id="strEdit" class='textInput' name="strEdit"></input>
                     <button id="strEditSubmit">edit</button>
                 </form>
                 <button id="undo">undo</button>
@@ -55,11 +55,11 @@
             <form action="" onsubmit="return false" id="postForm">
                 <div id="titleDiv">
                     <label for="title">Title: </label>
-                    <input type="text" id="titleBox" name="title"></input>
+                    <input type="text" id="titleBox" class='textInput' name="title" ></input>
                 </div>
                 <div id="authorDiv">
                     <label for="author">Author: </label>
-                    <input type="text" id="authorBox" name="author"></input>
+                    <input type="text" id="authorBox" class='textInput' name="author"></input>
                 </div>
                 <div id="postBtnDiv">
                     <button id="postBtn">post</button>
@@ -82,12 +82,11 @@
                 <br>    D - Turn Right
                 <br>    P - Move Forward
                 <br>    Q - Turn Counterclockwise
-                <br>    E - Turn clockwise
+                <br>    E - Turn Clockwise
         
         </p>
         <p> 
             <br> All actions including turns are recorded into the directions but you can use the undo button to undo your last action
-            <br> Note that turning 180 degrees turns you around clockwise - for more control you can use q and e to turn left and right 
             <br>
             <br> scalce - tells us how you want your curve to scale down. For example with a scale of 3, each line will be 3 times smaller than the previous iteration. A curve that ends 3 units from the starting point will stay the same size!
             <br> depth tells us how many times to replace each forward segment with the entire curve 
@@ -106,11 +105,8 @@
             <br> way to draw with arrow or turn with arrows?
             <br> make turtle more readable with directions for the numbers like enum
             <br> replace ctx  wconstrext, rpleace +_ w rl?
-            <br> undo - its the 180 degree turns! bc its ++!. maybe we need like a flag for 180 turns that tells us when to delete 2...
-            <br> undo - same direction in a row - maybe add a placeholder in the states string to delete that doesnt actually cahnge
-            <br> undo - undo more than there is 
-            <br> undo - only cahnge state if we didnt delete an f! or add placeholder and always delete
             <br> str edit - need to read string and get state list. 
+            <br> just error on illegal string and dont cahnge. revert back?
             <br> textbox edititng super werid what?
             <br> draw a goal dot start and stop for dif subdivisions/scales to keep it same scale
             <br> invert button!
