@@ -13,9 +13,13 @@ function displayData(data){
         instructions.textContent = element.instructions
         
         const date = document.createElement('p')
-        date.textContent = element.date
+        date.textContent = new Date(element.date).toLocaleString()
 
-        root.append(title,author,date,instructions)
+        const image = document.createElement('img')
+        image.src = element.image
+     
+
+        root.append(title,author,date,instructions,image)
         root.classList.add('entry')
         document.getElementById('feed').prepend(root)
     })

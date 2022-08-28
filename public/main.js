@@ -190,6 +190,7 @@ let canvas, ctx
                 case 'e':
                         str=str+'+'
                         break
+                
             } 
             currDir.textContent=`current direction:  ${state} ${states}`
             strEdit.value=str
@@ -208,6 +209,8 @@ let canvas, ctx
                 return
             }
 
+            
+
             const d = new Date()
             const dateStr = d.toLocaleString()
             
@@ -215,7 +218,8 @@ let canvas, ctx
                 title: titleBox.value,
                 author: authorBox.value,
                 instructions: strEdit.value,
-                date: dateStr
+                date: dateStr,
+                image: document.getElementById('canvas').toDataURL()
             }
             console.log(data)
 
