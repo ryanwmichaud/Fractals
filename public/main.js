@@ -2,7 +2,7 @@ import {Turtle} from './turtle.js'
 
 let canvas, ctx
 //add a target dot for start and finish
-    function main(){
+    async function main(){
         canvas = document.getElementById('canvas')
         if(canvas.getContext) {
             ctx = canvas.getContext('2d')
@@ -239,6 +239,7 @@ let canvas, ctx
         })
         
         
+          
         const t = new Turtle(150,150,ctx)
         const size = 200
         var depth = parseInt(depthInput.value)
@@ -246,13 +247,21 @@ let canvas, ctx
         //str = 'f+f-f-f+ff'
         var state = 'r'
         var states = 'r'
-        var str = ''
+        const data = await fetch('/loaded')
+        var str = await data.json()
+        strEdit.value=str
+        console.log(str,'was loaded')
+        
+        
+        
         currDir.textContent=`current direction: ${state} ${states}`
         ctx.beginPath()
         rec(t,size,depth,scale,str)
         t.drawTurtle()
 
-
+        if(str!==''){
+            reDraw()
+        }
  
     }
 

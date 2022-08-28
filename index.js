@@ -22,11 +22,12 @@ app.use(express.json({limit : '1mb'}))
 app.listen(3000,()=>{console.log('running on port 3000')})
 app.use(express.static('public'))
 
+var loaded = ''
 
 
 app.post('/entries',(req,res)=>{
     console.log('server got a post')
-    //console.log(req.body)
+   
     const e = new Entry({
         title: req.body.title, 
         author: req.body.author, 
@@ -34,7 +35,8 @@ app.post('/entries',(req,res)=>{
         date: req.body.date,
         image: req.body.image
     })
-    console.log(e,'yep');
+
+
     e.save().then(()=>{console.log('saved')})
     res.json({
         status: 'good'
@@ -49,6 +51,18 @@ app.get('/entries', (req,res)=>{
     
 })
 
+app.post('/loaded', (req,res)=>{
+    console.log('got',req.body)
+    loaded = req.body.data
+    res.json({
+        status: 'good',
+        instructions: req.body.data
+    })
+})
+
+app.get('/loaded',(req,res)=>{
+    res.send(JSON.stringify(loaded))
+})
 
 
 connect()
